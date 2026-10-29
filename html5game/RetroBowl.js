@@ -1,6 +1,57 @@
+function getUserColorFromSaveData() {
+    // Attempt to read the localStorage key
+    const savedData = localStorage.getItem("savedata.ini");
+    
+    if (savedData) {
+        // Extract the user_color value using regex (format: "100, 150, 200")
+        const match = savedData.match(/user_color\s*=\s*"(\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})"/);
+
+        if (match) {
+            const r = Number(match[1]);
+            const g = Number(match[2]);
+            const b = Number(match[3]);
+            if (r <= 255 && g <= 255 && b <= 255) {
+                return { r, g, b }; // Return the RGB values as an object
+            }
+        }
+    }
+    
+    // Default fallback color if not found
+    return { r: 44, g: 104, b: 255 };
+}
+
+function getRouteColorFromSaveData() {
+    // Attempt to read the localStorage key
+    const savedData = localStorage.getItem("savedata.ini");
+    
+    if (savedData) {
+        // Extract the route_color value using regex (format: "100, 150, 200")
+        const match = savedData.match(/route_color\s*=\s*"(\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})"/);
+
+        if (match) {
+            const r = Number(match[1]);
+            const g = Number(match[2]);
+            const b = Number(match[3]);
+            if (r <= 255 && g <= 255 && b <= 255) {
+                return { r, g, b }; // Return the RGB values as an object
+            }
+        }
+    }
+    
+    // Default fallback color if not found
+    return { r: 86, g: 216, b: 86 };
+}
+
+// Set the user_color and route_color variables based on the saved data
+const user_color = getUserColorFromSaveData();
+const route_color = getRouteColorFromSaveData();
+
+console.log("User Color:", user_color);
+console.log("Route Color:", route_color);
+
 Array.prototype.__yy_owner = 0;
 var JSON_game = {
-  Extensions: [{ name: "Poki", version: "1.0.0", jsFiles: ["uph_poki.js"], initfuncs: [] }, { init: "gml_Script_poki_init" }],
+  Extensions: [{ name: "Pok", version: "1.0.0", jsFiles: ["uph_poki.js"], initfuncs: [] }, { init: "gml_Script_poki_init" }],
   ExtensionOptions: { iOS_IAPs: {}, RetroBowl: {}, GooglePlayBillingExtension: {}, Poki: {} },
   Sounds: [
     { pName: "snd_music_co", kind: 1, extension: "", origName: "snd_music_co", effects: 0, volume: 1, pan: 0, preload: false, groupId: 0, duration: 242.16 },
@@ -86002,14 +86053,14 @@ function gml_Script_s_set_up_globals(_inst, _other) {
     global.gmlg_savename4 = "savedata4.ini";
     global.gmlg_savename5 = "savedata5.ini";
     global.gmlg_savename_exh = "savedata_exh.ini";
-    global.gmlc_background = make_color_rgb(44, 104, 255);
+    global.gmlc_background = make_color_rgb(user.color.r, user.color.g, user.color.b);
     global.gmlc_shadow = make_color_rgb(96, 96, 96);
     gml_Script_slog(_inst, _other, "s_set_up_globals 3");
     global.gmlc_primary = make_color_rgb(210, 210, 10);
     global.gmlc_highlight = make_color_rgb(230, 230, 130);
     global.gmlc_buttons = make_color_rgb(210, 210, 10);
     global.gmlc_backfill = make_color_rgb(0, 0, 0);
-    global.gmlc_routes = make_color_rgb(86, 216, 86);
+    global.gmlc_routes = make_color_rgb(route_color.r, route_color.g, route_color.b);
     global.gmlc_routes_rb = make_color_rgb(116, 164, 255);
     global.gmlc_headcoach = make_color_rgb(57, 180, 74);
     global.gmlc_offense = make_color_rgb(92, 200, 255);
