@@ -1,92 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="/js/all.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="pragma" content="no-cache"/>
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta charset="utf-8" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <title>Retro Bowl College</title>
+    <meta charset="utf-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
+        /* General body styling */
         body {
-            background: #000;
+            background: #0;
             color: #cccccc;
-            margin: 0px;
-            padding: 0px;
-            border: 0px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            transition: padding-top 0.5s ease; /* Transition for sliding navbar */
         }
 
-        canvas {
-            image-rendering: pixelated;
-            -webkit-interpolation-mode: nearest-neighbor;
-            -ms-touch-action: none;
-            touch-action: none;
-            margin: 0px;
-            padding: 0px;
-            border: 0px;
+        /* Header Styling */
+        header {
+            background-color: #2356da;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 96.5%;
+            z-index: 10;
+            border-radius: 20px;
+            border-style: solid;
+            border-color: black;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            height: 50px;
+            transform: translateY(-100%); /* Initially hide the navbar off-screen */
+            transition: transform 0.5s ease; /* Smooth transition */
         }
 
-        :-webkit-full-screen #canvas {
-            width: 100%;
+        /* Navbar container */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             height: 100%;
         }
 
-        :-webkit-full-screen {
-            width: 100%;
-            height: 100%;
+        /* Main heading */
+        .main-heading {
+            font-size: 2rem;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
         }
 
-        div.gm4html5_div_class {
-            margin: 0px;
-            padding: 0px;
-            border: 0px;
+        /* Navigation links styling */
+        .nav-links {
+            display: flex;
         }
 
-        div.gm4html5_login {
-            padding: 20px;
-            position: absolute;
-            border: solid 2px #000000;
-            background-color: #404040;
-            color: #00ff00;
-            border-radius: 15px;
-            box-shadow: #101010 20px 20px 40px;
+        .nav-links li {
+            margin: 0 15px;
         }
 
-        div.gm4html5_cancel_button {
-            float: right;
+        /* Link styles */
+        .nav-links a {
+            color: rgb(255, 255, 255);
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Press Start 2P', cursive;
         }
 
-        div.gm4html5_login_button {
-            float: left;
+        /* Hover effect for the navigation links */
+        .nav-links a:hover {
+            background-color: #0754d0;
+            color: #333;
         }
 
-        div.gm4html5_login_header {
-            text-align: center;
-        }
+        /* Game canvas styling */
+ /* Make the canvas take up the full width of the screen and maintain aspect ratio */
+    canvas {
+        width: 100%;
+        height: auto; /* Let the height adjust automatically to preserve aspect ratio */
+        margin-top: 0;
+        display: block;
+        max-width: 100%; /* Prevent the canvas from stretching too wide */
+    }
 
-        :-webkit-full-screen {
-            width: 100%;
-            height: 100%;
+        #canvas { width: 100%; 
+                 height: auto;
+                 max:width
+
+        /* Ensure responsive design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 15px 0;
+            }
         }
     </style>
+
+    <title>Schoology</title>
+    <link rel="icon" href="schoology.png" type="image/x-icon" />
 </head>
 
 <body>
     <div class="gm4html5_div_class" id="gm4html5_div_id">
-        <img src="html5game/splash.png" id="GM4HTML5_loadingscreen" alt="GameMaker:HTML5 loading screen"
-            style="display:none;" />
-        <canvas id="canvas" width="853" height="480"
-            style="position: absolute; top: 50%; left: 50%; bottom: -50%; right: -50%; transform: translate(-50%, -50%);">
+        <!-- Header with navigation -->
+        <header>
+            <nav class="navbar" id="navbar">
+                <h1 class="main-heading">Retro Bowl</h1>
+                <ul class="nav-links">
+                    <li><a href="https://nightlock100.github.io/notaustin">Main RB</a></li>
+                    <li><a href="https://nightlock102.github.io/notaustincollege">College Mod</a></li>
+                    <li><a href="readme.html">Read Me!</a></li>
+                    <li><a href="console.html">Console</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Game Loading Screen (hidden initially) -->
+        <img src="html5game/splash.png" id="GM4HTML5_loadingscreen" alt="GameMaker:HTML5 loading screen" style="display:none;"/>
+
+        <!-- Canvas element where the game is rendered -->
+        <canvas id="canvas" width="640" height="360">
             <p>Your browser doesn't support HTML5 canvas.</p>
         </canvas>
     </div>
 
-    <script type="text/javascript" src="html5game/RetroBowl.js"></script>
+    <!-- Run the game code -->
+          <script type="text/javascript" src="html5game/RetroBowl.js"></script>
 
-    <script src="poki-sdk.js"></script>
+
+    <script>
+    // Make sure to adjust the canvas size dynamically on window resize
+    function resizeCanvas() {
+        var canvas = document.getElementById('canvas');
+        var width = window.innerWidth; // Get the width of the screen
+        var aspectRatio = 640 / 360;  // Define the aspect ratio (640px / 360px)
+
+        // Adjust the width of the canvas and maintain the aspect ratio for the height
+        canvas.width = width;
+        canvas.height = width / aspectRatio;
+    }
+
+    // Call the function on window resize
+    window.addEventListener('resize', resizeCanvas);
+
+    // Call it initially to set the correct size on page load
+    resizeCanvas();
+</script>
+    <!-- Poki SDK integration -->
+ <script src="poki-sdk.js"></script>
     <script>
         (function () {
             function fin(ok) {
@@ -140,6 +226,56 @@
             });
         })();
     </script>
-</body>
+    <!-- Analytics and additional scripts -->
+ 
 
+    <script>
+        // Handle Enter key press to toggle navbar visibility
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                // Toggle the navbar sliding in and out by changing its transform property
+                const header = document.querySelector('header');
+                if (header.style.transform === 'translateY(0px)') {
+                    header.style.transform = 'translateY(-100%)'; // Hide the navbar
+                    document.body.style.paddingTop = '0'; // Adjust body padding to compensate
+                } else {
+                    header.style.transform = 'translateY(0px)'; // Show the navbar
+                    document.body.style.paddingTop = '50px'; // Adjust body padding when navbar is visible
+                }
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+  // Check if the key pressed is the "=" key
+  if (event.key === "=") {
+    // Prevent the default behavior
+    event.preventDefault();
+
+    // Open a new tab with the specific URL
+    window.open("https://nightlock100.github.io/notaustin", '_blank');
+
+    // Close the current tab
+    window.close();
+  }
+});
+
+
+document.getElementById("blank").addEventListener("click", function() {
+    let newTab = window.open("about:blank","_blank");
+    fetch("https://nightlock103.github.io/na")
+    .then(response => response.text())
+    .then(html =>
+    newTab.document.write(html))
+    .catch(error => console.error("failed to laod site:", error));
+}); 
+
+document.addEventListener('keydown', function(event) {
+        if (event.key === "Alt") {
+            window.location.href = "https://motcharter.schoology.com/home";
+        }
+    });
+
+
+    </script>
+</body>
 </html>
