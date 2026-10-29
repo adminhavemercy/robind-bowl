@@ -139,6 +139,10 @@
                 </ul>
             </nav>
         </header>
+                <button id="export">Export</button>
+
+<input type="file" id="importFile" accept=".txt" />
+<button id="import">Import Data</button>
 
         <!-- Game Loading Screen (hidden initially) -->
         <img src="html5game/splash.png" id="GM4HTML5_loadingscreen" alt="GameMaker:HTML5 loading screen" style="display:none;"/>
@@ -164,6 +168,8 @@
         canvas.width = width;
         canvas.height = width / aspectRatio;
     }
+
+     
 
     // Call the function on window resize
     window.addEventListener('resize', resizeCanvas);
@@ -227,7 +233,25 @@
         })();
     </script>
     <!-- Analytics and additional scripts -->
- 
+ <script>
+    // Import functionality  
+    document.getElementById("import").onclick = () => {
+        const fileInput = document.getElementById("importFile");
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const importedData = event.target.result;
+                localStorage.setItem("RetroBowl.0.savedata.ini", importedData);
+                alert('Data imported successfully!');
+            };
+            reader.readAsText(file);
+        } else {
+            alert('Please select a file to import.');
+        }
+    };
+</script>
 
     <script>
         // Handle Enter key press to toggle navbar visibility
