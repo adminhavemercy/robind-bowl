@@ -1,6 +1,6 @@
 function getUserColorFromSaveData() {
     // Attempt to read the localStorage key
-    const savedData = localStorage.getItem("savedata.ini");
+    const savedData = localStorage.getItem("RetroBowl.0.savedata.ini");
     
     if (savedData) {
         // Extract the user_color value using regex (format: "100, 150, 200")
@@ -22,7 +22,7 @@ function getUserColorFromSaveData() {
 
 function getRouteColorFromSaveData() {
     // Attempt to read the localStorage key
-    const savedData = localStorage.getItem("savedata.ini");
+    const savedData = localStorage.getItem("RetroBowl.0.savedata.ini");
     
     if (savedData) {
         // Extract the route_color value using regex (format: "100, 150, 200")
