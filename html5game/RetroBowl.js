@@ -51,7 +51,7 @@ console.log("Route Color:", route_color);
 
 Array.prototype.__yy_owner = 0;
 var JSON_game = {
-  Extensions: [{ name: "Pok", version: "1.0.0", jsFiles: ["uph_poki.js"], initfuncs: [] }, { init: "gml_Script_poki_init" }],
+  Extensions: [{ name: "Poki", version: "1.0.0", jsFiles: ["uph_poki.js"], initfuncs: [] }, { init: "gml_Script_poki_init" }],
   ExtensionOptions: { iOS_IAPs: {}, RetroBowl: {}, GooglePlayBillingExtension: {}, Poki: {} },
   Sounds: [
     { pName: "snd_music_co", kind: 1, extension: "", origName: "snd_music_co", effects: 0, volume: 1, pan: 0, preload: false, groupId: 0, duration: 242.16 },
